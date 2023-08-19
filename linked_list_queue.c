@@ -1,5 +1,4 @@
 #include "lib.h"
-#include <stdlib.h>
 
 typedef struct Node Node;
 struct Node {
