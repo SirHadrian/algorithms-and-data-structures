@@ -1,21 +1,21 @@
 #include "lib.h"
 
-Bool binary_search(int array[], uint length, int item) {
+int binary_search(int array[], uint length, int item) {
   uint low = 0;
-  uint high = length;
+  uint high = length - 1;
 
-  while (low < high) {
+  while (low <= high) {
     uint middle = floorff((low + high) / 2.);
-    uint pivot = array[middle];
+    int pivot = array[middle];
 
     if (pivot == item)
-      return True;
+      return middle;
     else if (item < pivot)
       high = middle;
     else
       low = middle + 1;
   }
-  return False;
+  return -1;
 }
 
 int main(void) {
@@ -24,8 +24,8 @@ int main(void) {
   uint length = sizeof(items) / sizeof(items[0]);
 
   print_array(items, length);
-  Bool find = binary_search(items, length, 5);
-  fprintf(stdout, "\nFound: %d\n", find);
+  uint index = binary_search(items, length, 1);
+  fprintf(stdout, "\nIndex: %d\n", index);
 
   return EXIT_SUCCESS;
 }

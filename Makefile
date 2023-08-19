@@ -1,5 +1,5 @@
 COMPILER=gcc
-COMPILER_FLAGS=-Wall -Werror -Wpedantic
+COMPILER_FLAGS=-Wall -Werror -Wpedantic -ggdb
 TARGET=out
 
 lib.o: lib.c

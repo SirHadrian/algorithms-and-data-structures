@@ -1,11 +1,13 @@
 #include "lib.h"
 
-Bool linear_search(int array[], uint length, int item) {
+int linear_search(int array[], uint length, int item) {
+  // Iterate over all the input
   for (uint i = 0; i < length; ++i) {
+    // Check every element for the item
     if (array[i] == item)
-      return True;
+      return i;
   }
-  return False;
+  return -1;
 }
 
 int main(void) {
@@ -15,8 +17,8 @@ int main(void) {
 
   print_array(items, length);
 
-  Bool find = linear_search(items, length, 5);
-  fprintf(stdout, "\nFound: %d\n", find);
+  int index = linear_search(items, length, 5);
+  fprintf(stdout, "\nIndex: %d\n", index);
 
   return EXIT_SUCCESS;
 }
