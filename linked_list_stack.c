@@ -106,5 +106,5 @@ int main(void) {
 
   free(stack);
 
-  return 0;
+  return EXIT_SUCCESS;
 }

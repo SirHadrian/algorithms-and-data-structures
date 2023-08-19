@@ -22,5 +22,5 @@ int main(void) {
   fprintf(stdout, "\nArray after sort:\n");
   print_array(items, length);
 
-  return 0;
+  return EXIT_SUCCESS;
 }

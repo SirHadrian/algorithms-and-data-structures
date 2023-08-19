@@ -27,5 +27,5 @@ int main(void) {
   Bool find = binary_search(items, length, 5);
   fprintf(stdout, "\nFound: %d\n", find);
 
-  return 0;
+  return EXIT_SUCCESS;
 }
