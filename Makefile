@@ -25,3 +25,6 @@ linked_list_queue: lib.o
 
 linked_list_stack: lib.o
 	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} linked_list_stack.c lib.o 
+
+quicksort: lib.o
+	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} quicksort.c lib.o 
