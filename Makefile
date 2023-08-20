@@ -1,5 +1,5 @@
 COMPILER=g++
-COMPILER_FLAGS=-Wall -Werror -Wpedantic -ggdb
+COMPILER_FLAGS=-Wall -Werror -Wpedantic -O3
 TARGET=out
 
 lib.o: lib.cpp
