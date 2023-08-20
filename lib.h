@@ -24,7 +24,9 @@
 typedef enum { False = 0, True = 1 } Bool;
 typedef unsigned int uint;
 
+namespace lib {
 void print_array(int array[], uint length);
 int floorff(float number);
 void swap(int *a, int *b);
 void die(const char *error);
+} // namespace lib

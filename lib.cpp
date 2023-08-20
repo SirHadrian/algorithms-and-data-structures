@@ -1,6 +1,6 @@
 #include "lib.h"
 
-void print_array(int array[], uint length) {
+void lib::print_array(int array[], uint length) {
   std::cout << "| ";
   for (uint i = 0; i < length; ++i) {
     std::cout << array[i] << " | ";
@@ -8,7 +8,7 @@ void print_array(int array[], uint length) {
   std::cout << std::endl;
 }
 
-int floorff(float number) { return (uint)number; }
+int lib::floorff(float number) { return (uint)number; }
 
 void swap(int *a, int *b) {
   const int temp = *a;
@@ -16,7 +16,7 @@ void swap(int *a, int *b) {
   *b = temp;
 }
 
-void die(const char *error) {
+void lib::die(const char *error) {
   std::cerr << error << std::endl;
   exit(EXIT_FAILURE);
 }

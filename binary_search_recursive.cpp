@@ -1,9 +1,10 @@
 #include "lib.h"
+#include <cmath>
 
 int binary_search_recursive(int array[], int left, int right, int item) {
 
   if (left <= right) {
-    uint middle = floorff((left + right) / 2.);
+    uint middle = std::floor((left + right) / 2.);
 
     if (item == array[middle])
       return middle;
@@ -21,7 +22,7 @@ int main(void) {
   int items[] = {0, 1, 2, 3, 4, 5};
   uint length = sizeof(items) / sizeof(items[0]);
 
-  print_array(items, length);
+  lib::print_array(items, length);
   int index = binary_search_recursive(items, 0, length - 1, 5);
   std::cout << "\nIndex: " << index << std::endl;
 

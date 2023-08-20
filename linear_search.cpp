@@ -15,7 +15,7 @@ int main(void) {
   int items[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
   uint length = sizeof(items) / sizeof(items[0]);
 
-  print_array(items, length);
+  lib::print_array(items, length);
 
   int index = linear_search(items, length, 5);
   std::cout << "\nIndex: " << index << std::endl;

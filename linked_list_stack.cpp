@@ -32,7 +32,7 @@ Node *Stack::create_node(int value) {
   Node *node = new (std::nothrow) Node;
 
   if (node == NULL) {
-    die("Could not alocate memory for new node to enqueue");
+    lib::die("Could not alocate memory for new node to enqueue");
   }
   node->value = value;
   node->next = NULL;
