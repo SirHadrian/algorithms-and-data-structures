@@ -5,6 +5,7 @@ void print_array(int array[], uint length) {
   for (uint i = 0; i < length; ++i) {
     std::cout << array[i] << " | ";
   }
+  std::cout << std::endl;
 }
 
 int floorff(float number) { return (uint)number; }

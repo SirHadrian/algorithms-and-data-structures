@@ -2,7 +2,7 @@
 #include <iostream>
 
 #ifndef NULL
-#define NULL 0
+#define NULL nullptr
 #endif
 
 #ifndef TRUE
