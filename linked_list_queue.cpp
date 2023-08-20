@@ -1,27 +1,38 @@
 #include "lib.h"
 
-typedef struct Node Node;
-struct Node {
+class Node {
+public:
   int value;
   Node *next;
 };
 
-typedef struct Queue Queue;
-struct Queue {
+class Queue {
+public:
+  void print_queue(void);
+  void enqueue(int value);
+  void top(void);
+  void dequeue(void);
+
+public:
+  Queue(void);
+  ~Queue(void);
+
+private:
+  Node *create_node(int value);
+
+private:
   Node *head;
   Node *tail;
-
-  void (*print_queue)(Queue *self);
-  void (*enqueue)(Queue *self, int value);
-  void (*top)(Queue *self);
-  void (*dequeue)(Queue *self);
 };
 
-Node *create_node(int value) {
-  Node *node = (Node *)malloc(sizeof(Node));
+Queue::Queue() : head(NULL), tail(NULL) {}
+Queue::~Queue() {}
+
+Node *Queue::create_node(int value) {
+  Node *node = new (std::nothrow) Node;
 
   if (node == NULL) {
-    die("Could not alocate memory for new node to enqueue");
+    lib::die("Could not alocate memory for new node to enqueue");
   }
   node->value = value;
   node->next = NULL;
@@ -29,80 +40,65 @@ Node *create_node(int value) {
   return node;
 }
 
-void enqueue(Queue *self, int value) {
-  Node *node = create_node(value);
+void Queue::enqueue(int value) {
+  Node *node = this->create_node(value);
 
-  if (self->tail == NULL) {
-    self->head = self->tail = node;
+  if (this->tail == NULL) {
+    this->head = this->tail = node;
     return;
   }
-  self->tail->next = node;
-  self->tail = node;
+  this->tail->next = node;
+  this->tail = node;
 }
 
-void dequeue(Queue *self) {
-  if (self->head == NULL)
+void Queue::dequeue() {
+  if (this->head == NULL)
     return;
 
-  Node *temp = self->head;
-  self->head = self->head->next;
+  Node *temp = this->head;
+  this->head = this->head->next;
 
-  if (self->head == NULL)
-    self->tail = NULL;
+  if (this->head == NULL)
+    this->tail = NULL;
 
-  free(temp);
+  delete temp;
 }
 
-void top(Queue *self) {
-  if (self->head == NULL) {
-    fprintf(stderr, "Queue is empty");
+void Queue::top() {
+  if (this->head == NULL) {
+    std::cout << "\nQueue is empty";
     return;
   }
-  fprintf(stdout, "\nTop: %d", self->head->value);
+  std::cout << "\nTop: " << this->head->value;
 }
 
-void print_queue(Queue *self) {
-  Node *current = self->head;
+void Queue::print_queue() {
+  Node *current = this->head;
 
   if (current == NULL) {
-    fprintf(stdout, "\nNo items in queue");
+    std::cout << "\nNo items in queue";
     return;
   }
 
+  std::cout << "\nQueue:";
   while (current != NULL) {
-    fprintf(stdout, "\nValue: %d", current->value);
+    std::cout << " " << current->value;
     current = current->next;
   }
-}
-
-Queue *create_queue(void) {
-  Queue *queue = (Queue *)malloc(sizeof(Queue));
-  if (queue == NULL) {
-    die("Could not alocate memory for new queue");
-  }
-  queue->head = queue->tail = NULL;
-
-  queue->dequeue = dequeue;
-  queue->enqueue = enqueue;
-  queue->top = top;
-  queue->print_queue = print_queue;
-
-  return queue;
+  std::cout << std::endl;
 }
 
 int main(void) {
 
-  Queue *queue = create_queue();
+  Queue queue;
 
-  queue->enqueue(queue, 10);
-  queue->enqueue(queue, 11);
-  queue->enqueue(queue, 12);
-  queue->print_queue(queue);
-  queue->top(queue);
-  queue->dequeue(queue);
-  queue->print_queue(queue);
-
-  free(queue);
+  queue.enqueue(10);
+  queue.enqueue(11);
+  queue.enqueue(12);
+  queue.print_queue();
+  queue.top();
+  queue.dequeue();
+  queue.print_queue();
 
   return EXIT_SUCCESS;
 }

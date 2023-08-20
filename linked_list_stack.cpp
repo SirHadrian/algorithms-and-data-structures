@@ -73,16 +73,17 @@ void Stack::peek() {
 }
 
 void Stack::print_stack() {
-  if (this->top == NULL) {
+  Node *current = this->top;
+
+  if (current == NULL) {
     std::cout << "\nStack is empty";
     return;
   }
 
-  Node *temp = this->top;
   std::cout << "\nStack top:";
-  while (temp != NULL) {
-    std::cout << " " << temp->value;
-    temp = temp->next;
+  while (current != NULL) {
+    std::cout << " " << current->value;
+    current = current->next;
   }
   std::cout << std::endl;
 }
