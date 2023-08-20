@@ -1,6 +1,5 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
 #ifndef NULL
 #define NULL 0

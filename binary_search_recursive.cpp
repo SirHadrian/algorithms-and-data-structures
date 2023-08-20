@@ -23,7 +23,7 @@ int main(void) {
 
   print_array(items, length);
   int index = binary_search_recursive(items, 0, length - 1, 5);
-  fprintf(stdout, "\nIndex: %d\n", index);
+  std::cout << "\nIndex: " << index << std::endl;
 
   return EXIT_SUCCESS;
 }

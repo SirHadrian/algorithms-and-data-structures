@@ -19,7 +19,7 @@ int main(void) {
 
   bubble_sort(items, length);
 
-  fprintf(stdout, "\nArray after sort:\n");
+  std::cout << "\nArray after sort:" << std::endl;
   print_array(items, length);
 
   return EXIT_SUCCESS;

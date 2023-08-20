@@ -18,7 +18,7 @@ int main(void) {
   print_array(items, length);
 
   int index = linear_search(items, length, 5);
-  fprintf(stdout, "\nIndex: %d\n", index);
+  std::cout << "\nIndex: " << index << std::endl;
 
   return EXIT_SUCCESS;
 }

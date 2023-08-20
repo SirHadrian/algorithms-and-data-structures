@@ -1,9 +1,9 @@
 #include "lib.h"
 
 void print_array(int array[], uint length) {
-  fprintf(stdout, "| ");
+  std::cout << "| ";
   for (uint i = 0; i < length; ++i) {
-    fprintf(stdout, "%d | ", array[i]);
+    std::cout << array[i] << " | ";
   }
 }
 
@@ -16,6 +16,6 @@ void swap(int *a, int *b) {
 }
 
 void die(const char *error) {
-  fprintf(stderr, "%s\n", error);
+  std::cerr << error << std::endl;
   exit(EXIT_FAILURE);
 }
