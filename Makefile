@@ -28,3 +28,6 @@ linked_list_stack: lib.o
 
 quicksort: lib.o
 	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} quicksort.c lib.o 
+
+binary_search_recursive: lib.o
+	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} binary_search_recursive.c lib.o 

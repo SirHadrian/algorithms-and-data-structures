@@ -6,11 +6,10 @@ int binary_search(int array[], uint length, int item) {
 
   while (low <= high) {
     uint middle = floorff((low + high) / 2.);
-    int pivot = array[middle];
 
-    if (pivot == item)
+    if (array[middle] == item)
       return middle;
-    else if (item < pivot)
+    else if (item < array[middle])
       high = middle;
     else
       low = middle + 1;
@@ -24,7 +23,7 @@ int main(void) {
   uint length = sizeof(items) / sizeof(items[0]);
 
   print_array(items, length);
-  uint index = binary_search(items, length, 1);
+  int index = binary_search(items, length, 1);
   fprintf(stdout, "\nIndex: %d\n", index);
 
   return EXIT_SUCCESS;
