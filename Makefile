@@ -1,6 +1,6 @@
 CC=gcc
 CPP=g++
-CFLAGS=-Wall -Wextra -Wconversion -Wuninitialized -Werror -Wpedantic
+CFLAGS=-Wall -Wextra -Wconversion -Wuninitialized -Wpedantic -Werror
 LDLIBS=-lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 TARGET=a.out
 

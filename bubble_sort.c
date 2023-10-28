@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "timer.h"
@@ -9,7 +10,6 @@ typedef unsigned int uint;
 #define HEIGTH 600
 #define WINDOW_NAME "Alg Visualizer"
 #define FPS 60
-#define OFFSET_Y 50
 
 #define START_DELAY 1
 #define DELAY 0
@@ -40,10 +40,8 @@ main(void)
 
   for (int i = 0; i < BARS; ++i)
   {
-    bars_array[i] = GetRandomValue(100, 500);
+    bars_array[i] = GetRandomValue(10, HEIGTH);
   }
-
-  Color col = RED;
 
   while (!WindowShouldClose()) 
   {
@@ -55,7 +53,8 @@ main(void)
 
       for (int i = 0; i < BARS; ++i)
       {
-        DrawRectangle(i * BAR_WIDTH, HEIGTH - bars_array[i], BAR_WIDTH, bars_array[i], col);
+        DrawRectangle(i * BAR_WIDTH, HEIGTH - bars_array[i], BAR_WIDTH, 
+            bars_array[i], RED);
       }
 
       if (timer_done(&timer, GetTime())) 
@@ -76,8 +75,10 @@ main(void)
 void 
 bubble_sort(int *const array, const int length, const int step) 
 {
-  for (int i = 0; i < length; ++i) 
+  bool swapped;
+  for (int i = 0; i < length - 1; ++i) 
   {
+    swapped = false;
     for (int j = 0; j < length - 1 - i; ++j) 
     {
       // Delay next step
@@ -88,6 +89,7 @@ bubble_sort(int *const array, const int length, const int step)
         swap(&array[j], &array[j + 1]);
       }
     }
+    if (swapped == false) break;
   }
 }
 
