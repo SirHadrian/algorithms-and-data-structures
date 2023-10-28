@@ -1,22 +1,35 @@
-#include "lib.h"
+#include <cstdlib>
+#include <iostream>
 
-int partition(int array[], int low, int high) {
+void
+swap(int *a, int *b)
+{
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+int 
+partition(int array[], int low, int high) 
+{
   int pivot = array[high];
   int index = low - 1;
 
   for (int i = low; i < high; ++i) {
     if (array[i] < pivot) {
       index++;
-      lib::swap(&array[index], &array[i]);
+      swap(&array[index], &array[i]);
     }
   }
   index++;
-  lib::swap(&array[index], &array[high]);
+  swap(&array[index], &array[high]);
 
   return index;
 }
 
-void quicksort(int array[], int low, int high) {
+void 
+quicksort(int array[], int low, int high) 
+{
   if (low < high) {
     int pivot = partition(array, low, high);
 
@@ -25,17 +38,29 @@ void quicksort(int array[], int low, int high) {
   }
 }
 
-int main(void) {
+void 
+print_array(int array[], int length) 
+{
+  std::cout << "| ";
+  for (int i = 0; i < length; ++i) {
+    std::cout << array[i] << " | ";
+  }
+  std::cout << std::endl;
+}
 
+int 
+main(void) 
+{
   int items[] = {9, 5, 8, 3, 1, 0, 6, 8, 5, 9};
-  uint length = sizeof(items) / sizeof(items[0]);
+  int length = sizeof(items) / sizeof(items[0]);
 
-  lib::print_array(items, length);
+  print_array(items, length);
 
   quicksort(items, 0, length - 1);
 
   std::cout << "\nArray after sort:" << std::endl;
-  lib::print_array(items, length);
+
+  print_array(items, length);
 
   return EXIT_SUCCESS;
 }

@@ -1,4 +1,11 @@
-#include "lib.h"
+#include <cstddef>
+#include <iostream>
+
+#define ERROR_N_DIE(msg) \
+do { \
+  fprintf(stderr, "ERROR: %s:%d - %s\n", __FILE__, __LINE__, msg); \
+  exit(EXIT_FAILURE); \
+} while(0)
 
 class Node {
 public:
@@ -32,7 +39,7 @@ Node *Stack::create_node(int value) {
   Node *node = new (std::nothrow) Node;
 
   if (node == NULL) {
-    lib::die("Could not alocate memory for new node to enqueue");
+    ERROR_N_DIE("Could not alocate memory for new node to enqueue");
   }
   node->value = value;
   node->next = NULL;

@@ -1,33 +1,31 @@
-COMPILER=g++
-COMPILER_FLAGS=-Wall -Werror -Wpedantic -O2
-TARGET=out
+CC=gcc
+CPP=g++
+CFLAGS=-Wall -Wextra -Wconversion -Wuninitialized -Werror -Wpedantic
+LDLIBS=-lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+TARGET=a.out
 
-lib.o: lib.cpp
-	${COMPILER} ${COMPILER_FLAGS} -c lib.cpp
+default: 
 
 clean:
 	rm *.o ${TARGET}
 
-run:
-	./${TARGET}
+linked_list_queue: 
+	${CPP} ${CFLAGS} -o ${TARGET} linked_list_queue.cpp && ./a.out
 
-linear_search: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} linear_search.cpp lib.o 
-	
-binary_search: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} binary_search.cpp lib.o
+linked_list_stack: 
+	${CPP} ${CFLAGS} -o ${TARGET} linked_list_stack.cpp && ./a.out
 
-bubble_sort: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} bubble_sort.cpp lib.o
+quicksort: 
+	${CPP} ${CFLAGS} -o ${TARGET} quicksort.cpp && ./a.out
 
-linked_list_queue: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} linked_list_queue.cpp lib.o
+linear_search: timer.o
+	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} linear_search.c timer.o && ./a.out
 
-linked_list_stack: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} linked_list_stack.cpp lib.o 
+binary_search: timer.o
+	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} binary_search.c timer.o && ./a.out
 
-quicksort: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} quicksort.cpp lib.o 
+bubble_sort: timer.o
+	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} bubble_sort.c timer.o && ./a.out
 
-binary_search_recursive: lib.o
-	${COMPILER} ${COMPILER_FLAGS} -o ${TARGET} binary_search_recursive.cpp lib.o 
+timer.o: timer.c
+	${CC} ${CFLAGS} -c timer.c
