@@ -30,5 +30,8 @@ bubble_sort: timer.o
 selection_sort: timer.o
 	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} selection_sort.c timer.o && ./a.out
 
+insertion_sort: timer.o
+	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} insertion_sort.c timer.o && ./a.out
+
 timer.o: timer.c
 	${CC} ${CFLAGS} -c timer.c
