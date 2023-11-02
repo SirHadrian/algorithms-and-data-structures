@@ -20,7 +20,8 @@ typedef unsigned int uint;
 #define LEN(array) sizeof(array)/sizeof(array[0])
 
 void swap(int *a, int *b);
-void bubble_sort(int *const array, const int length, const int step);
+int get_smallest(int *const array, const int low, const int length);
+void selection_sort(int *const array, const int length, const int step);
 
 int
 main(void)
@@ -62,7 +63,7 @@ main(void)
         start_timer(&timer, GetTime(), DELAY);
         if (step < BARS) step++;
       }
-      bubble_sort(bars_array, BARS, step);
+      selection_sort(bars_array, BARS, step);
 
     }
     EndDrawing();
@@ -73,24 +74,27 @@ main(void)
 }
 
 void 
-bubble_sort(int *const array, const int length, const int step) 
+selection_sort(int *const array, const int length, const int step) 
 {
-  bool swapped;
-  for (int i = 0; i < length - 1; ++i) 
+  for (int i = 0; i < length; ++i)
   {
-    swapped = false;
-    for (int j = 0; j < length - 1 - i; ++j) 
-    {
-      // Delay next step
-      if (j >= step) break;
+    // Delay next step
+    if (i >= step) break;
 
-      if (array[j] > array[j + 1]) 
-      {
-        swap(&array[j], &array[j + 1]);
-      }
-    }
-    if (swapped == false) break;
+    int n = get_smallest(array, i, length);
+    swap(&array[i], &array[n]);
   }
+}
+
+int 
+get_smallest(int *const array, const int low, const int length)
+{
+  int small = low;
+  for (int i = low + 1; i < length; ++i)
+  {
+    if (array[i] < array[small]) small = i;
+  }
+  return small;
 }
 
 void 

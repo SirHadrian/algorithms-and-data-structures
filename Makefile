@@ -27,5 +27,8 @@ binary_search: timer.o
 bubble_sort: timer.o
 	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} bubble_sort.c timer.o && ./a.out
 
+selection_sort: timer.o
+	${CC} ${CFLAGS} ${LDLIBS} -o ${TARGET} selection_sort.c timer.o && ./a.out
+
 timer.o: timer.c
 	${CC} ${CFLAGS} -c timer.c
